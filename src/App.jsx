@@ -9,10 +9,10 @@ const Portfolio = () => {
   useEffect(() => {
   const handleScroll = () => {
     // Scroll listener
-  };
-  window.addEventListener('scroll', handleScroll);
-  return () => window.removeEventListener('scroll', handleScroll);
-}, []);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
 
   const pages = {
     home: 'Bosh Sahifa',
