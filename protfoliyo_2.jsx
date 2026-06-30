@@ -165,6 +165,7 @@ const Portfolio = () => {
         <div className="h-1 w-20 bg-red-600 mb-12"></div>
 
         <div className="grid md:grid-cols-3 gap-12">
+          
           <div className="md:col-span-2">
             <div className="space-y-6 text-gray-400 text-lg">
               <p>
