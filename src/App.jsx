@@ -91,14 +91,13 @@ const Portfolio = () => {
         <div>
           <div className="text-red-600 text-lg font-mono mb-4">$ whoami</div>
           <h1 className="text-6xl md:text-7xl font-black text-white mb-6 leading-tight">
-            [ISMINGIZ SHUYA YOZING]
+            [Shoxruxbek, Duschanov]
           </h1>
           <p className="text-2xl text-gray-400 mb-8">
-            Senior Level Developer & [IXTISOSI SHUYA YOZING]
+            Basic Level Developer & [Basic]
           </p>
           <p className="text-lg text-gray-500 mb-8 max-w-lg">
-            [QISQACHA BIO SHUYA YOZING - Kimsan, nima qilyapsan, nima uchun shuni qilyapsan]
-          </p>
+            [Salom mening ismim Shahruh va men IT developer man va hozirda dasturlashni o'rganyabman va Forntend va AI bilaman. Men bu yonalishimni yaxshi koraman va mendda ishlash uchun barcha narsa yetarli]          </p>
           <div className="flex gap-4">
             <button
               onClick={() => setCurrentPage('projects')}
@@ -143,11 +142,11 @@ const Portfolio = () => {
             <div className="text-gray-400">Yillik Tajriba</div>
           </div>
           <div>
-            <div className="text-4xl font-black text-red-600 mb-2">[50+]</div>
+            <div className="text-4xl font-black text-red-600 mb-2">[10]</div>
             <div className="text-gray-400">Yakunlangan Loyiha</div>
           </div>
           <div>
-            <div className="text-4xl font-black text-red-600 mb-2">[100+]</div>
+            <div className="text-4xl font-black text-red-600 mb-2">[10]</div>
             <div className="text-gray-400">Xursand Mijozlar</div>
           </div>
           <div>
@@ -169,16 +168,16 @@ const Portfolio = () => {
           <div className="md:col-span-2">
             <div className="space-y-6 text-gray-400 text-lg">
               <p>
-                <span className="text-red-600 font-bold">[ISMINGIZ]</span> - [QANDAY MALUMOT YOZING]
+                <span className="text-red-600 font-bold">[Shoxruxbek]</span> - [Developer]
               </p>
               <p>
-                [SHAXSIY TAVSIF SHUYA YOZING - Kimsan, qanday qilyapsan, nima uchun shuni qilyapsan]
+                [Men Frontend va AI o'rganyabman va qolimdan kelgancha loyihalar qila olaman]
               </p>
               <p>
-                [MAQSAD VA TUMANALARINI YOZING - Nima qilishni xohlaysan, qanday sohalarda yaxshi]
+                [Men AI ishlatishda promtp va oddiy tekin ishlataman va maqsadlarim katta katta loyihalarda qatnashib korish]
               </p>
               <p>
-                [QANDAY QIYMATNI BERYAPSAN - Foydalanutscilarga qanday yordam berasan]
+                [Men sizga 24/7 javob bera olaman siz mengga yozasiz va men sizga 1 kun ichida javob beraman]
               </p>
             </div>
 
@@ -188,12 +187,12 @@ const Portfolio = () => {
               </h3>
               <div className="grid md:grid-cols-2 gap-4">
                 <div className="bg-gray-950 p-4 rounded border border-red-600/20">
-                  <div className="text-red-600 font-bold mb-2">[SOHA 1]</div>
-                  <div className="text-gray-400 text-sm">[Qanday narsalarda yaxshi - Ta'rif]</div>
+                  <div className="text-red-600 font-bold mb-2">[Frontend ]</div>
+                  <div className="text-gray-400 text-sm">[Men (Hozircha) Html, Css, Bootstrap va Js bilaman va yana organyabman va kelgusi yillarda React ni ham organmoqcdhiman]</div>
                 </div>
                 <div className="bg-gray-950 p-4 rounded border border-red-600/20">
-                  <div className="text-red-600 font-bold mb-2">[SOHA 2]</div>
-                  <div className="text-gray-400 text-sm">[Qanday narsalarda yaxshi - Ta'rif]</div>
+                  <div className="text-red-600 font-bold mb-2">[AI boyicha]</div>
+                  <div className="text-gray-400 text-sm">[Men Ai bilan kopincha har xil loyihalar rasm va videolar generatsiya qilaman va qolimdan kelgancha katta katta loyihalar qilaman]</div>
                 </div>
               </div>
             </div>
@@ -203,21 +202,21 @@ const Portfolio = () => {
             <div className="bg-gradient-to-br from-red-600 to-red-900 rounded-lg p-1 sticky top-28">
               <div className="bg-black rounded-lg p-8 text-center">
                 <div className="w-32 h-32 mx-auto bg-gradient-to-br from-red-600 to-red-900 rounded-full mb-6"></div>
-                <h3 className="text-white font-bold text-lg mb-4">[ISMINGIZ]</h3>
-                <p className="text-red-600 text-sm mb-6">[MUTAXASSIS NOMLANISHI]</p>
+                <h3 className="text-white font-bold text-lg mb-4">[Shoxrux]</h3>
+                <p className="text-red-600 text-sm mb-6">[Developer]</p>
                 
                 <div className="space-y-3 text-left text-sm">
                   <div className="flex items-center gap-2 text-gray-400">
                     <MapPin size={16} className="text-red-600" />
-                    [SHAHAR, DAVLAT]
+                    [Xonqa tumani, Xorazm viloyati]
                   </div>
                   <div className="flex items-center gap-2 text-gray-400">
                     <Mail size={16} className="text-red-600" />
-                    [EMAIL]
+                    [shahruhduschanov@gmail.com]
                   </div>
                   <div className="flex items-center gap-2 text-gray-400">
                     <Phone size={16} className="text-red-600" />
-                    [TELEFON]
+                    [+998999138999]
                   </div>
                 </div>
               </div>
@@ -331,16 +330,16 @@ const Portfolio = () => {
             <div key={i} className="border-l-4 border-red-600 pl-6 pb-8">
               <div className="flex justify-between items-start mb-2">
                 <div>
-                  <h3 className="text-2xl font-bold text-white">[VAS LAVOZIMI {i + 1}]</h3>
-                  <p className="text-red-600 font-bold">[KOMPANIYA NOMI {i + 1}]</p>
+                  <h3 className="text-2xl font-bold text-white">[O'quvchi {i + 1}]</h3>
+                  <p className="text-red-600 font-bold">[Al-Xorazmiy vorislari {i + 1}]</p>
                 </div>
-                <span className="text-gray-500 text-sm">[2020 - 2021]</span>
+                <span className="text-gray-500 text-sm">[2024-2028]</span>
               </div>
-              <p className="text-gray-400 mt-4 mb-4">[ISHNI TA'RIFI - Qanday narsalarni qildingiz, qanday natija oilingiz]</p>
+              <p className="text-gray-400 mt-4 mb-4">[Men shu mahalgacha Start-Ap qilib kordim va kichik kichik loyihalar qildim va Al-Xorazmiy vorislari saytimizda joylaganman va Github profilimga otib tanishib chiqishinggiz mumkin]</p>
               <ul className="space-y-2 text-gray-400 text-sm">
-                <li>✓ [TAPSHIRMA 1]</li>
-                <li>✓ [TAPSHIRMA 2]</li>
-                <li>✓ [TAPSHIRMA 3]</li>
+                <li>✓ [Chat suhbatlashish uchun]</li>
+                <li>✓ [Saytga fayl tashlab telegram botga Yuborish]</li>
+                <li>✓ [Test ishlash va javobini olish]</li>
               </ul>
             </div>
           ))}
@@ -361,13 +360,13 @@ const Portfolio = () => {
               <div className="flex justify-between items-start mb-2">
                 <div>
                   <h3 className="text-2xl font-bold text-white flex items-center gap-2">
-                    <BookOpen size={24} className="text-red-600" /> [MUTAXASSISLIK {i + 1}]
+                    <BookOpen size={24} className="text-red-600" /> [Yaxshi {i + 1}]
                   </h3>
                   <p className="text-red-600 font-bold mt-2">[O'QUV MUASSASASI {i + 1}]</p>
                 </div>
-                <span className="text-gray-500 text-sm">[2015 - 2019]</span>
+                <span className="text-gray-500 text-sm">[2024 - 2028]</span>
               </div>
-              <p className="text-gray-400 mt-4">[TA'LIM TAVSIFI VA ERISHGAN NATIJALARINGIZ]</p>
+              <p className="text-gray-400 mt-4">[Men Al-Xorazmiy vorislarida o'qib o'zim uchun men har xil narsalarga erishdim Sertifikatlar va sovg'alarga erishdim va sizlarga ham tavsiya qilaman]</p>
             </div>
           ))}
         </div>
@@ -380,9 +379,9 @@ const Portfolio = () => {
           <div className="grid md:grid-cols-2 gap-4">
             {Array.from({ length: 4 }).map((_, i) => (
               <div key={i} className="bg-gray-950 border border-red-600/30 rounded p-4 hover:border-red-600 transition">
-                <p className="text-white font-bold">[SERTIFIKAT {i + 1}]</p>
-                <p className="text-gray-500 text-sm mt-2">[SERTIFIKAT BERYUVCHI TASHKILOT]</p>
-                <p className="text-red-600 text-sm mt-2">[SANA]</p>
+                <p className="text-white font-bold">[Frontend {i + 1}]</p>
+                <p className="text-gray-500 text-sm mt-2">[Itstudy.uz]</p>
+                <p className="text-red-600 text-sm mt-2">[2025]</p>
               </div>
             ))}
           </div>
@@ -403,11 +402,11 @@ const Portfolio = () => {
               <div className="h-40 bg-gradient-to-br from-red-600/20 to-red-900/20"></div>
               <div className="p-6">
                 <div className="text-red-600 text-xs font-bold mb-2">[KATEGORIYA]</div>
-                <h3 className="text-xl font-bold text-white mb-3 group-hover:text-red-600 transition">[MAQOLA NOMI {i + 1}]</h3>
-                <p className="text-gray-400 text-sm mb-4">[MAQOLA QISQACHA TAVSIFI - Qanday narsani yozasiz, qanday foydalanuvchi uchun]</p>
+                <h3 className="text-xl font-bold text-white mb-3 group-hover:text-red-600 transition">[Mengga Jamoa kerak {i + 1}]</h3>
+                <p className="text-gray-400 text-sm mb-4">[Mengga Jamoa uchun odamlar kerak va yaxshi dasturchilar bolsa mengga aloqaga chiqing]</p>
                 <div className="flex justify-between items-center text-sm text-gray-500">
-                  <span>[SANA]</span>
-                  <span className="text-red-600">5 min o'qish</span>
+                  <span>[2026/06/29]</span>
+                  <span className="text-red-600">Joylar kam qolgan !</span>
                 </div>
               </div>
             </article>
@@ -425,14 +424,14 @@ const Portfolio = () => {
 
         <div className="grid md:grid-cols-2 gap-12">
           <div>
-            <p className="text-gray-400 text-lg mb-8">[MUROJAAT QILISH HAQIDA MATN - Men bilan qanday bog'lanishni yozing, nima uchun murojaat qilishi kerak]</p>
+            <p className="text-gray-400 text-lg mb-8">[Men bilan bo'glanmoqchi bo'lsanggiz pastgi qisimda mening telefon raqamim bor va mengga yozsanggiz men sizga 1 kun ichida javob qaytaraman]</p>
 
             <div className="space-y-6">
               <div className="flex gap-4">
                 <Mail className="text-red-600 flex-shrink-0" size={24} />
                 <div>
                   <p className="text-white font-bold">Email</p>
-                  <p className="text-gray-400">[EMAIL MANZILI]</p>
+                  <p className="text-gray-400">[shahruhduschanov@gmail.com]</p>
                 </div>
               </div>
 
@@ -440,7 +439,7 @@ const Portfolio = () => {
                 <Phone className="text-red-600 flex-shrink-0" size={24} />
                 <div>
                   <p className="text-white font-bold">Telefon</p>
-                  <p className="text-gray-400">[TELEFON RAQAMI]</p>
+                  <p className="text-gray-400">[+998999138999]</p>
                 </div>
               </div>
 
@@ -448,7 +447,7 @@ const Portfolio = () => {
                 <MapPin className="text-red-600 flex-shrink-0" size={24} />
                 <div>
                   <p className="text-white font-bold">Manzil</p>
-                  <p className="text-gray-400">[SHAHAR, DAVLAT]</p>
+                  <p className="text-gray-400">[Xonqa tumani, Xorazm viloyati]</p>
                 </div>
               </div>
 
@@ -457,9 +456,9 @@ const Portfolio = () => {
                 <div>
                   <p className="text-white font-bold">Sosial Tarmoqlar</p>
                   <div className="flex gap-4 text-red-600">
-                    <a href="#" className="hover:text-red-400">LinkedIn</a>
-                    <a href="#" className="hover:text-red-400">Twitter</a>
-                    <a href="#" className="hover:text-red-400">GitHub</a>
+                    <a href="#" className="hover:text-red-400">LinkedIn (hozircha yoq)</a>
+                    <a href="https://gitlab.com/shoxruxbek_899" className="hover:text-red-400">Gitlab</a>
+                    <a href="https://github.com/shaxa-desing" className="hover:text-red-400">GitHub</a>
                   </div>
                 </div>
               </div>
@@ -547,7 +546,7 @@ const Portfolio = () => {
 
         <div className="border-t border-red-600/30 pt-8 flex justify-between items-center">
           <p className="text-gray-500 text-sm">
-            © 2024 [ISMINGIZ]. Barcha huquqlar himoyalangan.
+            © 2024 [Shoxrux]. Barcha huquqlar himoyalangan.
           </p>
           <div className="flex gap-6 text-gray-500 text-sm">
             <a href="#" className="hover:text-red-600">Privacy Policy</a>
