@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Menu, X, ArrowRight, ExternalLink, Github, Gitlab, Mail, Phone, MapPin, Code, Briefcase, BookOpen, Award } from 'lucide-react';
+import { Menu, X, ArrowRight, ExternalLink, Github, Mail, Phone, MapPin, Code, Briefcase, BookOpen, Award } from 'lucide-react';
 
 const Portfolio = () => {
   const [currentPage, setCurrentPage] = useState('home');
@@ -16,202 +16,319 @@ const Portfolio = () => {
     contact: 'Aloqasi'
   };
 
-  // ==================== COMPONENTS ====================
-  
+  const styles = {
+    container: {
+      backgroundColor: '#000000',
+      minHeight: '100vh',
+      fontFamily: 'system-ui, -apple-system, sans-serif'
+    },
+    nav: {
+      position: 'fixed',
+      width: '100%',
+      top: 0,
+      zIndex: 50,
+      backgroundColor: 'rgba(0, 0, 0, 0.95)',
+      backdropFilter: 'blur(10px)',
+      borderBottom: '1px solid #dc2626',
+      padding: '1rem 1.5rem'
+    },
+    navContent: {
+      maxWidth: '1280px',
+      margin: '0 auto',
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'center'
+    },
+    logo: {
+      fontSize: '1.5rem',
+      fontWeight: 'bold',
+      color: '#ffffff'
+    },
+    logoRed: {
+      color: '#dc2626'
+    },
+    navMenu: {
+      display: 'flex',
+      gap: '2rem',
+      alignItems: 'center'
+    },
+    navButton: (isActive) => ({
+      background: 'none',
+      border: 'none',
+      color: isActive ? '#dc2626' : '#d1d5db',
+      cursor: 'pointer',
+      fontSize: '0.875rem',
+      fontWeight: '500',
+      borderBottom: isActive ? '2px solid #dc2626' : 'none',
+      paddingBottom: '0.25rem',
+      transition: 'color 0.3s'
+    }),
+    section: {
+      maxWidth: '1280px',
+      margin: '0 auto',
+      padding: '5rem 1.5rem',
+      backgroundColor: '#000000'
+    },
+    heading: {
+      fontSize: '3rem',
+      fontWeight: 'bold',
+      color: '#ffffff',
+      marginBottom: '1rem'
+    },
+    redLine: {
+      height: '0.25rem',
+      width: '5rem',
+      backgroundColor: '#dc2626',
+      marginBottom: '3rem'
+    },
+    text: {
+      color: '#9ca3af',
+      fontSize: '1rem',
+      lineHeight: '1.5'
+    },
+    button: (isPrimary) => ({
+      padding: '0.75rem 2rem',
+      borderRadius: '0.375rem',
+      fontWeight: 'bold',
+      border: 'none',
+      cursor: 'pointer',
+      fontSize: '1rem',
+      backgroundColor: isPrimary ? '#dc2626' : 'transparent',
+      color: isPrimary ? '#ffffff' : '#dc2626',
+      borderWidth: isPrimary ? '0' : '2px',
+      borderColor: '#dc2626',
+      transition: 'all 0.3s',
+      display: 'flex',
+      alignItems: 'center',
+      gap: '0.5rem'
+    }),
+    card: {
+      backgroundColor: '#1a1a1a',
+      border: '1px solid rgba(220, 38, 38, 0.2)',
+      borderRadius: '0.5rem',
+      padding: '1.5rem',
+      transition: 'all 0.3s'
+    },
+    heroSection: {
+      marginTop: '6rem',
+      display: 'grid',
+      gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))',
+      gap: '3rem',
+      alignItems: 'center'
+    },
+    statsGrid: {
+      display: 'grid',
+      gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+      gap: '2rem',
+      backgroundColor: '#1a1a1a',
+      padding: '2rem',
+      borderTop: '1px solid rgba(220, 38, 38, 0.3)',
+      borderBottom: '1px solid rgba(220, 38, 38, 0.3)'
+    },
+    stat: {
+      textAlign: 'center'
+    },
+    statNumber: {
+      fontSize: '2.25rem',
+      fontWeight: 'bold',
+      color: '#dc2626',
+      marginBottom: '0.5rem'
+    },
+    statLabel: {
+      color: '#9ca3af'
+    },
+    mobileMenu: {
+      display: mobileMenuOpen ? 'block' : 'none',
+      backgroundColor: 'rgba(0, 0, 0, 0.98)',
+      borderTop: '1px solid #dc2626',
+      padding: '1rem 1.5rem'
+    },
+    menuButton: {
+      background: 'none',
+      border: 'none',
+      color: '#ffffff',
+      cursor: 'pointer',
+      fontSize: '1.5rem'
+    },
+    gridLayout: {
+      display: 'grid',
+      gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+      gap: '2rem'
+    },
+    footer: {
+      backgroundColor: '#000000',
+      borderTop: '1px solid rgba(220, 38, 38, 0.3)',
+      padding: '3rem 1.5rem',
+      marginTop: '5rem'
+    }
+  };
+
   const Navigation = () => (
-    <nav className="fixed w-full top-0 z-50 bg-black/95 backdrop-blur border-b border-red-600">
-      <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-        <div className="text-2xl font-bold">
-          <span className="text-white">[</span>
-          <span className="text-red-600">PORTFOLIO</span>
-          <span className="text-white">]</span>
+    <nav style={styles.nav}>
+      <div style={styles.navContent}>
+        <div style={styles.logo}>
+          [<span style={styles.logoRed}>PORTFOLIO</span>]
         </div>
         
-        {/* Desktop Menu */}
-        <div className="hidden md:flex gap-8">
+        <div style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
           {Object.entries(pages).map(([key, label]) => (
             <button
               key={key}
               onClick={() => setCurrentPage(key)}
-              className={`transition-all text-sm font-medium ${
-                currentPage === key
-                  ? 'text-red-600 border-b-2 border-red-600'
-                  : 'text-gray-300 hover:text-white'
-              }`}
+              style={styles.navButton(currentPage === key)}
+              onMouseEnter={(e) => e.target.style.color = currentPage === key ? '#dc2626' : '#ffffff'}
+              onMouseLeave={(e) => e.target.style.color = currentPage === key ? '#dc2626' : '#d1d5db'}
             >
               {label}
             </button>
           ))}
         </div>
 
-        {/* Mobile Menu Button */}
         <button
-          className="md:hidden text-white"
+          style={styles.menuButton}
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
         >
           {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
 
-      {/* Mobile Menu */}
-      {mobileMenuOpen && (
-        <div className="md:hidden bg-black/98 border-t border-red-600">
-          <div className="px-6 py-4 space-y-3">
-            {Object.entries(pages).map(([key, label]) => (
-              <button
-                key={key}
-                onClick={() => {
-                  setCurrentPage(key);
-                  setMobileMenuOpen(false);
-                }}
-                className={`block w-full text-left py-2 ${
-                  currentPage === key ? 'text-red-600' : 'text-gray-300'
-                }`}
-              >
-                {label}
-              </button>
-            ))}
-          </div>
-        </div>
-      )}
+      <div style={styles.mobileMenu}>
+        {Object.entries(pages).map(([key, label]) => (
+          <button
+            key={key}
+            onClick={() => {
+              setCurrentPage(key);
+              setMobileMenuOpen(false);
+            }}
+            style={{
+              display: 'block',
+              width: '100%',
+              textAlign: 'left',
+              padding: '0.5rem 0',
+              background: 'none',
+              border: 'none',
+              color: currentPage === key ? '#dc2626' : '#d1d5db',
+              cursor: 'pointer',
+              fontSize: '1rem'
+            }}
+          >
+            {label}
+          </button>
+        ))}
+      </div>
     </nav>
   );
 
   const HomePage = () => (
-    <div className="min-h-screen bg-black pt-24">
-      {/* Hero Section */}
-      <section className="max-w-7xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-12 items-center">
+    <div style={{ backgroundColor: '#000000', minHeight: '100vh', paddingTop: '6rem' }}>
+      <section style={styles.heroSection}>
         <div>
-          <div className="text-red-600 text-lg font-mono mb-4">$ whoami</div>
-          <h1 className="text-6xl md:text-7xl font-black text-white mb-6 leading-tight">
+          <div style={{ color: '#dc2626', fontSize: '1.125rem', fontFamily: 'monospace', marginBottom: '1rem' }}>$ whoami</div>
+          <h1 style={{ fontSize: '3.5rem', fontWeight: 'bold', color: '#ffffff', marginBottom: '1.5rem', lineHeight: '1.2' }}>
             Shoxruxbek Duschanov
           </h1>
-          <p className="text-2xl text-gray-400 mb-8">
+          <p style={{ fontSize: '1.5rem', color: '#9ca3af', marginBottom: '2rem' }}>
             Frontend Developer & AI Enthusiast
           </p>
-          <p className="text-lg text-gray-500 mb-8 max-w-lg">
+          <p style={{ fontSize: '1rem', color: '#6b7280', marginBottom: '2rem', maxWidth: '500px' }}>
             Salom! Men Shoxruxbek va men IT developer man. Dasturlashni o'rganyabman va Frontend va AI bilaman. Katta loyihalarni qilishni va yangi texnologiyalarni o'rganishni juda yoqtiradim.
           </p>
-          <div className="flex gap-4">
+          <div style={{ display: 'flex', gap: '1rem' }}>
             <button
               onClick={() => setCurrentPage('projects')}
-              className="bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded font-bold flex items-center gap-2 transition"
+              style={{...styles.button(true), backgroundColor: '#dc2626'}}
+              onMouseEnter={(e) => e.target.style.backgroundColor = '#b91c1c'}
+              onMouseLeave={(e) => e.target.style.backgroundColor = '#dc2626'}
             >
               Loyihalarni Ko'rish <ArrowRight size={20} />
             </button>
             <button
               onClick={() => setCurrentPage('contact')}
-              className="border-2 border-red-600 text-red-600 hover:bg-red-600 hover:text-white px-8 py-3 rounded font-bold transition"
+              style={{...styles.button(false)}}
+              onMouseEnter={(e) => {e.target.style.backgroundColor = '#dc2626'; e.target.style.color = '#ffffff'}}
+              onMouseLeave={(e) => {e.target.style.backgroundColor = 'transparent'; e.target.style.color = '#dc2626'}}
             >
               Murojaat Qilish
             </button>
           </div>
         </div>
 
-        {/* Hero Visual */}
-        <div className="hidden md:block">
-          <div className="bg-gradient-to-br from-red-600 to-red-900 rounded-lg p-1">
-            <div className="bg-black rounded-lg p-8 font-mono text-green-400 text-sm h-96 overflow-hidden">
+        <div style={{ display: 'none' }}>
+          <div style={{ background: 'linear-gradient(to bottom right, #dc2626, #7f1d1d)', borderRadius: '0.5rem', padding: '0.25rem' }}>
+            <div style={{ backgroundColor: '#000000', borderRadius: '0.5rem', padding: '2rem', fontFamily: 'monospace', color: '#4ade80', fontSize: '0.875rem', height: '400px', overflowY: 'hidden' }}>
               <div>$ portfolio --init</div>
-              <div className="mt-4">
+              <div style={{ marginTop: '1rem' }}>
                 ✓ Frontend Development<br/>
                 ✓ HTML, CSS, JavaScript<br/>
                 ✓ Bootstrap & Responsive<br/>
                 ✓ AI Integration<br/>
                 ✓ Problem Solving
               </div>
-              <div className="mt-8 text-red-600">
-                Loading professional profile...
-              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="bg-gray-950 py-16 border-y border-red-600/30">
-        <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-8 text-center">
-          <div>
-            <div className="text-4xl font-black text-red-600 mb-2">2+</div>
-            <div className="text-gray-400">Yillik Tajriba</div>
-          </div>
-          <div>
-            <div className="text-4xl font-black text-red-600 mb-2">10+</div>
-            <div className="text-gray-400">Yakunlangan Loyiha</div>
-          </div>
-          <div>
-            <div className="text-4xl font-black text-red-600 mb-2">10+</div>
-            <div className="text-gray-400">Xursand Mijozlar</div>
-          </div>
-          <div>
-            <div className="text-4xl font-black text-red-600 mb-2">24/7</div>
-            <div className="text-gray-400">Support</div>
-          </div>
+      <section style={styles.statsGrid}>
+        <div style={styles.stat}>
+          <div style={styles.statNumber}>2+</div>
+          <div style={styles.statLabel}>Yillik Tajriba</div>
+        </div>
+        <div style={styles.stat}>
+          <div style={styles.statNumber}>10+</div>
+          <div style={styles.statLabel}>Yakunlangan Loyiha</div>
+        </div>
+        <div style={styles.stat}>
+          <div style={styles.statNumber}>10+</div>
+          <div style={styles.statLabel}>Xursand Mijozlar</div>
+        </div>
+        <div style={styles.stat}>
+          <div style={styles.statNumber}>24/7</div>
+          <div style={styles.statLabel}>Support</div>
         </div>
       </section>
     </div>
   );
 
   const AboutPage = () => (
-    <div className="min-h-screen bg-black pt-24">
-      <div className="max-w-4xl mx-auto px-6 py-20">
-        <h1 className="text-5xl font-black text-white mb-4">Men Haqimda</h1>
-        <div className="h-1 w-20 bg-red-600 mb-12"></div>
+    <div style={{ backgroundColor: '#000000', minHeight: '100vh', paddingTop: '6rem' }}>
+      <div style={styles.section}>
+        <h1 style={styles.heading}>Men Haqimda</h1>
+        <div style={styles.redLine}></div>
 
-        <div className="grid md:grid-cols-3 gap-12">
-          <div className="md:col-span-2">
-            <div className="space-y-6 text-gray-400 text-lg">
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '3rem' }}>
+          <div style={{ gridColumn: 'span 2' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', color: '#9ca3af', fontSize: '1.125rem' }}>
               <p>
-                <span className="text-red-600 font-bold">Shoxruxbek Duschanov</span> - Frontend Developer va AI enthusiast
+                <span style={{ color: '#dc2626', fontWeight: 'bold' }}>Shoxruxbek Duschanov</span> - Frontend Developer va AI enthusiast
               </p>
               <p>
                 Men Frontend va AI o'rganyabman va qolimdan kelgancha professional loyihalar qila olaman. HTML, CSS, Bootstrap va JavaScript bilaman va yana React ni o'rganmoqchiman.
               </p>
               <p>
-                AI ishlatishda har xil promptlar yozaman va katta loyihalarda qatnashishni yoqtiradim. Har har narsani o'rganishga tayyorman va yangi texnologiyalarni tezda qabul qila olaman.
+                AI ishlatishda har xil promptlar yozaman va katta loyihalarda qatnashishni yoqtiradim. Har bir narsani o'rganishga tayyorman va yangi texnologiyalarni tezda qabul qila olaman.
               </p>
-              <p>
-                Men sizga 24/7 javob bera olaman. Agar mengga savol yoki loyiha haqida fikr bildirmoqchi bo'lsangiz, 1 kun ichida javob qaytaraman.
-              </p>
-            </div>
-
-            <div className="mt-12 space-y-4">
-              <h3 className="text-2xl font-bold text-white flex items-center gap-2">
-                <Award size={24} className="text-red-600" /> Asosiy Maydonlar
-              </h3>
-              <div className="grid md:grid-cols-2 gap-4">
-                <div className="bg-gray-950 p-4 rounded border border-red-600/20">
-                  <div className="text-red-600 font-bold mb-2">Frontend Development</div>
-                  <div className="text-gray-400 text-sm">HTML, CSS, Bootstrap va JavaScript bilaman. Responsive va user-friendly saytlar yarataman. React o'rganmoqchiman.</div>
-                </div>
-                <div className="bg-gray-950 p-4 rounded border border-red-600/20">
-                  <div className="text-red-600 font-bold mb-2">AI & Automation</div>
-                  <div className="text-gray-400 text-sm">AI bilan har xil loyihalar qila olaman. Rasm va video generatsiya, prompt engineering va automation qila olaman.</div>
-                </div>
-              </div>
             </div>
           </div>
 
-          <div>
-            <div className="bg-gradient-to-br from-red-600 to-red-900 rounded-lg p-1 sticky top-28">
-              <div className="bg-black rounded-lg p-8 text-center">
-                <div className="w-32 h-32 mx-auto bg-gradient-to-br from-red-600 to-red-900 rounded-full mb-6"></div>
-                <h3 className="text-white font-bold text-lg mb-4">Shoxruxbek</h3>
-                <p className="text-red-600 text-sm mb-6">Frontend Developer</p>
-                
-                <div className="space-y-3 text-left text-sm">
-                  <div className="flex items-center gap-2 text-gray-400">
-                    <MapPin size={16} className="text-red-600" />
-                    Xonqa, Xorazm
-                  </div>
-                  <div className="flex items-center gap-2 text-gray-400">
-                    <Mail size={16} className="text-red-600" />
-                    shahruhduschanov@gmail.com
-                  </div>
-                  <div className="flex items-center gap-2 text-gray-400">
-                    <Phone size={16} className="text-red-600" />
-                    +998 99 913 89 99
-                  </div>
+          <div style={{ ...styles.card, backgroundColor: 'linear-gradient(135deg, rgba(220, 38, 38, 0.1), rgba(127, 29, 29, 0.1))', position: 'sticky', top: '100px' }}>
+            <div style={{ textAlign: 'center' }}>
+              <div style={{ width: '8rem', height: '8rem', margin: '0 auto 1.5rem', backgroundColor: 'linear-gradient(135deg, #dc2626, #7f1d1d)', borderRadius: '50%' }}></div>
+              <h3 style={{ color: '#ffffff', fontWeight: 'bold', fontSize: '1.125rem', marginBottom: '1rem' }}>Shoxruxbek</h3>
+              <p style={{ color: '#dc2626', fontSize: '0.875rem', marginBottom: '1.5rem' }}>Frontend Developer</p>
+              
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', fontSize: '0.875rem', alignItems: 'flex-start' }}>
+                <div style={{ display: 'flex', gap: '0.5rem', color: '#9ca3af' }}>
+                  <MapPin size={16} style={{ color: '#dc2626' }} />
+                  Xonqa, Xorazm
+                </div>
+                <div style={{ display: 'flex', gap: '0.5rem', color: '#9ca3af' }}>
+                  <Mail size={16} style={{ color: '#dc2626' }} />
+                  shahruhduschanov@gmail.com
+                </div>
+                <div style={{ display: 'flex', gap: '0.5rem', color: '#9ca3af' }}>
+                  <Phone size={16} style={{ color: '#dc2626' }} />
+                  +998 99 913 89 99
                 </div>
               </div>
             </div>
@@ -222,195 +339,132 @@ const Portfolio = () => {
   );
 
   const SkillsPage = () => (
-    <div className="min-h-screen bg-black pt-24">
-      <div className="max-w-6xl mx-auto px-6 py-20">
-        <h1 className="text-5xl font-black text-white mb-4">Ko'nikmalar</h1>
-        <div className="h-1 w-20 bg-red-600 mb-12"></div>
+    <div style={{ backgroundColor: '#000000', minHeight: '100vh', paddingTop: '6rem' }}>
+      <div style={styles.section}>
+        <h1 style={styles.heading}>Ko'nikmalar</h1>
+        <div style={styles.redLine}></div>
 
-        <div className="grid md:grid-cols-3 gap-8 mb-20">
-          {['Frontend', 'AI & Tools', 'Other'].map((category, idx) => (
-            <div key={idx} className="group">
-              <div className="border-2 border-red-600 rounded-lg p-8 bg-gray-950 group-hover:bg-red-600/10 transition">
-                <h3 className="text-white font-bold text-xl mb-6 flex items-center gap-2">
-                  <Code size={24} className="text-red-600" /> {category}
-                </h3>
-                <ul className="space-y-3">
-                  {category === 'Frontend' && (
-                    <>
-                      <li className="text-gray-400 flex items-center gap-2">
-                        <span className="w-2 h-2 bg-red-600 rounded-full"></span>
-                        HTML5
-                      </li>
-                      <li className="text-gray-400 flex items-center gap-2">
-                        <span className="w-2 h-2 bg-red-600 rounded-full"></span>
-                        CSS3
-                      </li>
-                      <li className="text-gray-400 flex items-center gap-2">
-                        <span className="w-2 h-2 bg-red-600 rounded-full"></span>
-                        JavaScript
-                      </li>
-                      <li className="text-gray-400 flex items-center gap-2">
-                        <span className="w-2 h-2 bg-red-600 rounded-full"></span>
-                        Bootstrap
-                      </li>
-                      <li className="text-gray-400 flex items-center gap-2">
-                        <span className="w-2 h-2 bg-red-600 rounded-full"></span>
-                        Responsive Design
-                      </li>
-                    </>
-                  )}
-                  {category === 'AI & Tools' && (
-                    <>
-                      <li className="text-gray-400 flex items-center gap-2">
-                        <span className="w-2 h-2 bg-red-600 rounded-full"></span>
-                        AI Prompting
-                      </li>
-                      <li className="text-gray-400 flex items-center gap-2">
-                        <span className="w-2 h-2 bg-red-600 rounded-full"></span>
-                        Image Generation
-                      </li>
-                      <li className="text-gray-400 flex items-center gap-2">
-                        <span className="w-2 h-2 bg-red-600 rounded-full"></span>
-                        Automation
-                      </li>
-                      <li className="text-gray-400 flex items-center gap-2">
-                        <span className="w-2 h-2 bg-red-600 rounded-full"></span>
-                        Git & GitHub
-                      </li>
-                      <li className="text-gray-400 flex items-center gap-2">
-                        <span className="w-2 h-2 bg-red-600 rounded-full"></span>
-                        VS Code
-                      </li>
-                    </>
-                  )}
-                  {category === 'Other' && (
-                    <>
-                      <li className="text-gray-400 flex items-center gap-2">
-                        <span className="w-2 h-2 bg-red-600 rounded-full"></span>
-                        Problem Solving
-                      </li>
-                      <li className="text-gray-400 flex items-center gap-2">
-                        <span className="w-2 h-2 bg-red-600 rounded-full"></span>
-                        Communication
-                      </li>
-                      <li className="text-gray-400 flex items-center gap-2">
-                        <span className="w-2 h-2 bg-red-600 rounded-full"></span>
-                        Quick Learner
-                      </li>
-                      <li className="text-gray-400 flex items-center gap-2">
-                        <span className="w-2 h-2 bg-red-600 rounded-full"></span>
-                        Team Work
-                      </li>
-                      <li className="text-gray-400 flex items-center gap-2">
-                        <span className="w-2 h-2 bg-red-600 rounded-full"></span>
-                        Uzbek, English
-                      </li>
-                    </>
-                  )}
-                </ul>
-              </div>
+        <div style={styles.gridLayout}>
+          {['Frontend', 'AI & Tools', 'Other'].map((category) => (
+            <div key={category} style={{ ...styles.card, border: '2px solid #dc2626', cursor: 'pointer', transition: 'all 0.3s' }} onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgba(220, 38, 38, 0.1)'} onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#1a1a1a'}>
+              <h3 style={{ color: '#ffffff', fontWeight: 'bold', fontSize: '1.25rem', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                <Code size={24} style={{ color: '#dc2626' }} /> {category}
+              </h3>
+              <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', listStyle: 'none', padding: 0 }}>
+                {category === 'Frontend' && (
+                  <>
+                    <li style={{ color: '#9ca3af', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                      <span style={{ width: '0.5rem', height: '0.5rem', backgroundColor: '#dc2626', borderRadius: '50%' }}></span>
+                      HTML5
+                    </li>
+                    <li style={{ color: '#9ca3af', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                      <span style={{ width: '0.5rem', height: '0.5rem', backgroundColor: '#dc2626', borderRadius: '50%' }}></span>
+                      CSS3
+                    </li>
+                    <li style={{ color: '#9ca3af', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                      <span style={{ width: '0.5rem', height: '0.5rem', backgroundColor: '#dc2626', borderRadius: '50%' }}></span>
+                      JavaScript
+                    </li>
+                    <li style={{ color: '#9ca3af', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                      <span style={{ width: '0.5rem', height: '0.5rem', backgroundColor: '#dc2626', borderRadius: '50%' }}></span>
+                      Bootstrap
+                    </li>
+                    <li style={{ color: '#9ca3af', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                      <span style={{ width: '0.5rem', height: '0.5rem', backgroundColor: '#dc2626', borderRadius: '50%' }}></span>
+                      Responsive Design
+                    </li>
+                  </>
+                )}
+                {category === 'AI & Tools' && (
+                  <>
+                    <li style={{ color: '#9ca3af', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                      <span style={{ width: '0.5rem', height: '0.5rem', backgroundColor: '#dc2626', borderRadius: '50%' }}></span>
+                      AI Prompting
+                    </li>
+                    <li style={{ color: '#9ca3af', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                      <span style={{ width: '0.5rem', height: '0.5rem', backgroundColor: '#dc2626', borderRadius: '50%' }}></span>
+                      Image Generation
+                    </li>
+                    <li style={{ color: '#9ca3af', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                      <span style={{ width: '0.5rem', height: '0.5rem', backgroundColor: '#dc2626', borderRadius: '50%' }}></span>
+                      Git & GitHub
+                    </li>
+                    <li style={{ color: '#9ca3af', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                      <span style={{ width: '0.5rem', height: '0.5rem', backgroundColor: '#dc2626', borderRadius: '50%' }}></span>
+                      VS Code
+                    </li>
+                    <li style={{ color: '#9ca3af', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                      <span style={{ width: '0.5rem', height: '0.5rem', backgroundColor: '#dc2626', borderRadius: '50%' }}></span>
+                      Automation
+                    </li>
+                  </>
+                )}
+                {category === 'Other' && (
+                  <>
+                    <li style={{ color: '#9ca3af', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                      <span style={{ width: '0.5rem', height: '0.5rem', backgroundColor: '#dc2626', borderRadius: '50%' }}></span>
+                      Problem Solving
+                    </li>
+                    <li style={{ color: '#9ca3af', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                      <span style={{ width: '0.5rem', height: '0.5rem', backgroundColor: '#dc2626', borderRadius: '50%' }}></span>
+                      Communication
+                    </li>
+                    <li style={{ color: '#9ca3af', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                      <span style={{ width: '0.5rem', height: '0.5rem', backgroundColor: '#dc2626', borderRadius: '50%' }}></span>
+                      Quick Learner
+                    </li>
+                    <li style={{ color: '#9ca3af', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                      <span style={{ width: '0.5rem', height: '0.5rem', backgroundColor: '#dc2626', borderRadius: '50%' }}></span>
+                      Team Work
+                    </li>
+                    <li style={{ color: '#9ca3af', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                      <span style={{ width: '0.5rem', height: '0.5rem', backgroundColor: '#dc2626', borderRadius: '50%' }}></span>
+                      Uzbek, English
+                    </li>
+                  </>
+                )}
+              </ul>
             </div>
           ))}
-        </div>
-
-        {/* Proficiency Levels */}
-        <div className="space-y-6">
-          <h2 className="text-2xl font-bold text-white">Malaka Darajasi</h2>
-          <div>
-            <div className="flex justify-between mb-2">
-              <span className="text-white font-bold">HTML & CSS</span>
-              <span className="text-red-600">85%</span>
-            </div>
-            <div className="h-2 bg-gray-900 rounded-full overflow-hidden border border-red-600/20">
-              <div className="h-full bg-gradient-to-r from-red-600 to-red-500 rounded-full" style={{ width: '85%' }}></div>
-            </div>
-          </div>
-          <div>
-            <div className="flex justify-between mb-2">
-              <span className="text-white font-bold">JavaScript</span>
-              <span className="text-red-600">70%</span>
-            </div>
-            <div className="h-2 bg-gray-900 rounded-full overflow-hidden border border-red-600/20">
-              <div className="h-full bg-gradient-to-r from-red-600 to-red-500 rounded-full" style={{ width: '70%' }}></div>
-            </div>
-          </div>
-          <div>
-            <div className="flex justify-between mb-2">
-              <span className="text-white font-bold">Bootstrap</span>
-              <span className="text-red-600">80%</span>
-            </div>
-            <div className="h-2 bg-gray-900 rounded-full overflow-hidden border border-red-600/20">
-              <div className="h-full bg-gradient-to-r from-red-600 to-red-500 rounded-full" style={{ width: '80%' }}></div>
-            </div>
-          </div>
-          <div>
-            <div className="flex justify-between mb-2">
-              <span className="text-white font-bold">React (Learning)</span>
-              <span className="text-red-600">40%</span>
-            </div>
-            <div className="h-2 bg-gray-900 rounded-full overflow-hidden border border-red-600/20">
-              <div className="h-full bg-gradient-to-r from-red-600 to-red-500 rounded-full" style={{ width: '40%' }}></div>
-            </div>
-          </div>
-          <div>
-            <div className="flex justify-between mb-2">
-              <span className="text-white font-bold">AI & Prompting</span>
-              <span className="text-red-600">75%</span>
-            </div>
-            <div className="h-2 bg-gray-900 rounded-full overflow-hidden border border-red-600/20">
-              <div className="h-full bg-gradient-to-r from-red-600 to-red-500 rounded-full" style={{ width: '75%' }}></div>
-            </div>
-          </div>
-          <div>
-            <div className="flex justify-between mb-2">
-              <span className="text-white font-bold">Git & GitHub</span>
-              <span className="text-red-600">75%</span>
-            </div>
-            <div className="h-2 bg-gray-900 rounded-full overflow-hidden border border-red-600/20">
-              <div className="h-full bg-gradient-to-r from-red-600 to-red-500 rounded-full" style={{ width: '75%' }}></div>
-            </div>
-          </div>
         </div>
       </div>
     </div>
   );
 
   const ProjectsPage = () => (
-    <div className="min-h-screen bg-black pt-24">
-      <div className="max-w-6xl mx-auto px-6 py-20">
-        <h1 className="text-5xl font-black text-white mb-4">Loyihalar</h1>
-        <div className="h-1 w-20 bg-red-600 mb-12"></div>
+    <div style={{ backgroundColor: '#000000', minHeight: '100vh', paddingTop: '6rem' }}>
+      <div style={styles.section}>
+        <h1 style={styles.heading}>Loyihalar</h1>
+        <div style={styles.redLine}></div>
 
-        <div className="grid md:grid-cols-2 gap-8">
+        <div style={styles.gridLayout}>
           {Array.from({ length: 6 }).map((_, i) => (
-            <div key={i} className="group border-2 border-red-600/30 rounded-lg overflow-hidden bg-gray-950 hover:border-red-600 transition">
-              <div className="h-48 bg-gradient-to-br from-red-600/20 to-red-900/20 flex items-center justify-center overflow-hidden">
-                <div className="text-center">
-                  <Briefcase size={48} className="text-red-600 mx-auto mb-2" />
-                  <p className="text-gray-500 font-mono">Loyiha {i + 1}</p>
+            <div key={i} style={{ ...styles.card, border: '2px solid rgba(220, 38, 38, 0.3)', cursor: 'pointer', overflow: 'hidden' }} onMouseEnter={(e) => e.currentTarget.style.borderColor = '#dc2626'} onMouseLeave={(e) => e.currentTarget.style.borderColor = 'rgba(220, 38, 38, 0.3)'}>
+              <div style={{ height: '200px', background: 'linear-gradient(135deg, rgba(220, 38, 38, 0.2), rgba(127, 29, 29, 0.2))', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.5rem' }}>
+                <div style={{ textAlign: 'center' }}>
+                  <Briefcase size={48} style={{ color: '#dc2626', marginBottom: '0.5rem' }} />
+                  <p style={{ color: '#6b7280', fontFamily: 'monospace' }}>Loyiha {i + 1}</p>
                 </div>
               </div>
 
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-white mb-2">Loyiha #{i + 1}</h3>
-                <p className="text-gray-400 text-sm mb-4">Bu yerda loyiha tavsifi yoziladi. Qanday texnologiya ishlatilgan, qanday muammo hal etilgan va natijasi nima ekanligi.</p>
+              <h3 style={{ fontSize: '1.25rem', fontWeight: 'bold', color: '#ffffff', marginBottom: '0.5rem' }}>Loyiha #{i + 1}</h3>
+              <p style={{ color: '#9ca3af', fontSize: '0.875rem', marginBottom: '1rem' }}>Bu yerda loyiha tavsifi yoziladi. Qanday texnologiya ishlatilgan.</p>
 
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {['HTML', 'CSS', 'JavaScript'].map((tech, j) => (
-                    <span key={j} className="bg-red-600/20 text-red-400 text-xs px-3 py-1 rounded">
-                      {tech}
-                    </span>
-                  ))}
-                </div>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginBottom: '1rem' }}>
+                {['HTML', 'CSS', 'JavaScript'].map((tech) => (
+                  <span key={tech} style={{ backgroundColor: 'rgba(220, 38, 38, 0.2)', color: '#dc2626', fontSize: '0.75rem', padding: '0.25rem 0.75rem', borderRadius: '0.25rem' }}>
+                    {tech}
+                  </span>
+                ))}
+              </div>
 
-                <div className="flex gap-3">
-                  <button className="flex-1 bg-red-600 hover:bg-red-700 text-white py-2 rounded font-bold flex items-center justify-center gap-2 transition">
-                    <ExternalLink size={16} /> Ko'rish
-                  </button>
-                  <button className="flex-1 border border-red-600 text-red-600 hover:bg-red-600 hover:text-white py-2 rounded font-bold flex items-center justify-center gap-2 transition">
-                    <Github size={16} /> Code
-                  </button>
-                </div>
+              <div style={{ display: 'flex', gap: '0.75rem' }}>
+                <button style={{ flex: 1, backgroundColor: '#dc2626', color: '#ffffff', padding: '0.5rem', borderRadius: '0.375rem', border: 'none', fontWeight: 'bold', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', transition: 'background-color 0.3s' }} onMouseEnter={(e) => e.target.style.backgroundColor = '#b91c1c'} onMouseLeave={(e) => e.target.style.backgroundColor = '#dc2626'}>
+                  <ExternalLink size={16} /> Ko'rish
+                </button>
+                <button style={{ flex: 1, border: '1px solid #dc2626', color: '#dc2626', backgroundColor: 'transparent', padding: '0.5rem', borderRadius: '0.375rem', fontWeight: 'bold', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', transition: 'all 0.3s' }} onMouseEnter={(e) => {e.target.style.backgroundColor = '#dc2626'; e.target.style.color = '#ffffff'}} onMouseLeave={(e) => {e.target.style.backgroundColor = 'transparent'; e.target.style.color = '#dc2626'}}>
+                  <Github size={16} /> Code
+                </button>
               </div>
             </div>
           ))}
@@ -420,121 +474,76 @@ const Portfolio = () => {
   );
 
   const ExperiencePage = () => (
-    <div className="min-h-screen bg-black pt-24">
-      <div className="max-w-4xl mx-auto px-6 py-20">
-        <h1 className="text-5xl font-black text-white mb-4">Ishchi Tajriba</h1>
-        <div className="h-1 w-20 bg-red-600 mb-12"></div>
+    <div style={{ backgroundColor: '#000000', minHeight: '100vh', paddingTop: '6rem' }}>
+      <div style={styles.section}>
+        <h1 style={styles.heading}>Ishchi Tajriba</h1>
+        <div style={styles.redLine}></div>
 
-        <div className="space-y-8">
-          <div className="border-l-4 border-red-600 pl-6 pb-8">
-            <div className="flex justify-between items-start mb-2">
-              <div>
-                <h3 className="text-2xl font-bold text-white">Startup - Chat Bot Loyihasi</h3>
-                <p className="text-red-600 font-bold">Al-Xorazmiy Vorislarida</p>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+          {[
+            { title: 'Startup - Chat Bot Loyihasi', company: 'Al-Xorazmiy Vorislarida', date: '2024 - 2025', desc: 'Men kichik startup loyihasida qatnashib, chat suhbatlashish uchun bot yaratdim.' },
+            { title: 'Personal Projects', company: 'GitHub Portfolio', date: '2024 - Hozir', desc: 'Har xil personal loyihalarni GitHub\'da hosil qilaman.' }
+          ].map((exp, i) => (
+            <div key={i} style={{ borderLeft: '4px solid #dc2626', paddingLeft: '1.5rem', paddingBottom: '2rem' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start', marginBottom: '0.5rem' }}>
+                <div>
+                  <h3 style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#ffffff' }}>{exp.title}</h3>
+                  <p style={{ color: '#dc2626', fontWeight: 'bold' }}>{exp.company}</p>
+                </div>
+                <span style={{ color: '#6b7280', fontSize: '0.875rem' }}>{exp.date}</span>
               </div>
-              <span className="text-gray-500 text-sm">2024 - 2025</span>
+              <p style={{ color: '#9ca3af', marginTop: '1rem', marginBottom: '1rem' }}>{exp.desc}</p>
+              <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', color: '#9ca3af', fontSize: '0.875rem' }}>
+                <li>✓ Frontend sayt yaratish (HTML, CSS, JS)</li>
+                <li>✓ Telegram Bot integratsiyasi</li>
+                <li>✓ File upload va processing</li>
+              </ul>
             </div>
-            <p className="text-gray-400 mt-4 mb-4">Men kichik startup loyihasida qatnashib, chat suhbatlashish uchun bot yaratdim. Saytga fayl tashlash va Telegram botga yuborish imkoniyati qo'shadim. Test ishlash va javoblarini oladigan tizim qurdim.</p>
-            <ul className="space-y-2 text-gray-400 text-sm">
-              <li>✓ Frontend sayt yaratish (HTML, CSS, JS)</li>
-              <li>✓ Telegram Bot integratsiyasi</li>
-              <li>✓ File upload va processing</li>
-            </ul>
-          </div>
-
-          <div className="border-l-4 border-red-600 pl-6 pb-8">
-            <div className="flex justify-between items-start mb-2">
-              <div>
-                <h3 className="text-2xl font-bold text-white">Personal Projects</h3>
-                <p className="text-red-600 font-bold">GitHub Portfolio</p>
-              </div>
-              <span className="text-gray-500 text-sm">2024 - Hozir</span>
-            </div>
-            <p className="text-gray-400 mt-4 mb-4">Har xil personal loyihalarni GitHub'da hosil qilaman. Frontend veb saytlar, AI loyihalari va automation scriptlarini qildim.</p>
-            <ul className="space-y-2 text-gray-400 text-sm">
-              <li>✓ Responsive Web Design</li>
-              <li>✓ HTML, CSS, JavaScript</li>
-              <li>✓ Git version control</li>
-            </ul>
-          </div>
+          ))}
         </div>
       </div>
     </div>
   );
 
   const EducationPage = () => (
-    <div className="min-h-screen bg-black pt-24">
-      <div className="max-w-4xl mx-auto px-6 py-20">
-        <h1 className="text-5xl font-black text-white mb-4">Ta'lim</h1>
-        <div className="h-1 w-20 bg-red-600 mb-12"></div>
+    <div style={{ backgroundColor: '#000000', minHeight: '100vh', paddingTop: '6rem' }}>
+      <div style={styles.section}>
+        <h1 style={styles.heading}>Ta'lim</h1>
+        <div style={styles.redLine}></div>
 
-        <div className="space-y-8">
-          <div className="bg-gradient-to-r from-red-600/10 to-transparent border-l-4 border-red-600 rounded-r-lg p-8">
-            <div className="flex justify-between items-start mb-2">
-              <div>
-                <h3 className="text-2xl font-bold text-white flex items-center gap-2">
-                  <BookOpen size={24} className="text-red-600" /> Al-Xorazmiy Vorislarida
-                </h3>
-                <p className="text-red-600 font-bold mt-2">Frontend Development</p>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', marginBottom: '3rem' }}>
+          {[
+            { title: 'Al-Xorazmiy Vorislarida', subtitle: 'Frontend Development', date: '2024 - 2028' },
+            { title: 'Online Courses', subtitle: 'Web Development & AI', date: '2023 - Hozir' },
+            { title: 'Self-Learning', subtitle: 'Practice & Projects', date: '2024 - Hozir' }
+          ].map((edu, i) => (
+            <div key={i} style={{ background: 'linear-gradient(to right, rgba(220, 38, 38, 0.1), transparent)', borderLeft: '4px solid #dc2626', borderRadius: '0 0.5rem 0.5rem 0', padding: '2rem' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start', marginBottom: '0.5rem' }}>
+                <div>
+                  <h3 style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#ffffff', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <BookOpen size={24} style={{ color: '#dc2626' }} /> {edu.title}
+                  </h3>
+                  <p style={{ color: '#dc2626', fontWeight: 'bold', marginTop: '0.5rem' }}>{edu.subtitle}</p>
+                </div>
+                <span style={{ color: '#6b7280', fontSize: '0.875rem' }}>{edu.date}</span>
               </div>
-              <span className="text-gray-500 text-sm">2024 - 2028</span>
+              <p style={{ color: '#9ca3af', marginTop: '1rem' }}>Professional ta'lim va bilim to'plash.</p>
             </div>
-            <p className="text-gray-400 mt-4">Al-Xorazmiy vorislari platformasida dasturlash o'rganmoqchiman. Frontend, Backend va AI sohalari bo'yicha bilim to'plammoqchiman. Sertifikat va sovg'alarga erish maqsadi.</p>
-          </div>
-
-          <div className="bg-gradient-to-r from-red-600/10 to-transparent border-l-4 border-red-600 rounded-r-lg p-8">
-            <div className="flex justify-between items-start mb-2">
-              <div>
-                <h3 className="text-2xl font-bold text-white flex items-center gap-2">
-                  <BookOpen size={24} className="text-red-600" /> Online Courses
-                </h3>
-                <p className="text-red-600 font-bold mt-2">Web Development & AI</p>
-              </div>
-              <span className="text-gray-500 text-sm">2023 - Hozir</span>
-            </div>
-            <p className="text-gray-400 mt-4">Turli platformalarda online kurslardan o'qiyapman. HTML, CSS, JavaScript, Bootstrap va React bilish uchun o'qiyapman.</p>
-          </div>
-
-          <div className="bg-gradient-to-r from-red-600/10 to-transparent border-l-4 border-red-600 rounded-r-lg p-8">
-            <div className="flex justify-between items-start mb-2">
-              <div>
-                <h3 className="text-2xl font-bold text-white flex items-center gap-2">
-                  <BookOpen size={24} className="text-red-600" /> Self-Learning
-                </h3>
-                <p className="text-red-600 font-bold mt-2">Practice & Projects</p>
-              </div>
-              <span className="text-gray-500 text-sm">2024 - Hozir</span>
-            </div>
-            <p className="text-gray-400 mt-4">Har kun loyihalar qilib va GitHub'da saqlayb o'rganyapman. Amaliy tajriba to'plammoqchiman.</p>
-          </div>
+          ))}
         </div>
 
-        {/* Certificates Section */}
-        <div className="mt-16">
-          <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-2">
-            <Award size={24} className="text-red-600" /> Sertifikatlar
+        <div>
+          <h2 style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#ffffff', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+            <Award size={24} style={{ color: '#dc2626' }} /> Sertifikatlar
           </h2>
-          <div className="grid md:grid-cols-2 gap-4">
-            <div className="bg-gray-950 border border-red-600/30 rounded p-4 hover:border-red-600 transition">
-              <p className="text-white font-bold">Frontend Basics</p>
-              <p className="text-gray-500 text-sm mt-2">Itstudy.uz</p>
-              <p className="text-red-600 text-sm mt-2">2024</p>
-            </div>
-            <div className="bg-gray-950 border border-red-600/30 rounded p-4 hover:border-red-600 transition">
-              <p className="text-white font-bold">HTML & CSS</p>
-              <p className="text-gray-500 text-sm mt-2">Online Course</p>
-              <p className="text-red-600 text-sm mt-2">2024</p>
-            </div>
-            <div className="bg-gray-950 border border-red-600/30 rounded p-4 hover:border-red-600 transition">
-              <p className="text-white font-bold">JavaScript Basics</p>
-              <p className="text-gray-500 text-sm mt-2">Online Platform</p>
-              <p className="text-red-600 text-sm mt-2">2024</p>
-            </div>
-            <div className="bg-gray-950 border border-red-600/30 rounded p-4 hover:border-red-600 transition">
-              <p className="text-white font-bold">AI Prompting</p>
-              <p className="text-gray-500 text-sm mt-2">Self Learning</p>
-              <p className="text-red-600 text-sm mt-2">2025</p>
-            </div>
+          <div style={styles.gridLayout}>
+            {['Frontend Basics', 'HTML & CSS', 'JavaScript Basics', 'AI Prompting'].map((cert) => (
+              <div key={cert} style={{ ...styles.card, border: '1px solid rgba(220, 38, 38, 0.3)', cursor: 'pointer' }} onMouseEnter={(e) => e.currentTarget.style.borderColor = '#dc2626'} onMouseLeave={(e) => e.currentTarget.style.borderColor = 'rgba(220, 38, 38, 0.3)'}>
+                <p style={{ color: '#ffffff', fontWeight: 'bold' }}>{cert}</p>
+                <p style={{ color: '#6b7280', fontSize: '0.875rem', marginTop: '0.5rem' }}>Online Platform</p>
+                <p style={{ color: '#dc2626', fontSize: '0.875rem', marginTop: '0.5rem' }}>2024-2025</p>
+              </div>
+            ))}
           </div>
         </div>
       </div>
@@ -542,169 +551,108 @@ const Portfolio = () => {
   );
 
   const BlogPage = () => (
-    <div className="min-h-screen bg-black pt-24">
-      <div className="max-w-6xl mx-auto px-6 py-20">
-        <h1 className="text-5xl font-black text-white mb-4">Blog</h1>
-        <div className="h-1 w-20 bg-red-600 mb-12"></div>
+    <div style={{ backgroundColor: '#000000', minHeight: '100vh', paddingTop: '6rem' }}>
+      <div style={styles.section}>
+        <h1 style={styles.heading}>Blog</h1>
+        <div style={styles.redLine}></div>
 
-        <div className="grid md:grid-cols-2 gap-8">
-          <article className="bg-gray-950 border border-red-600/30 rounded-lg overflow-hidden hover:border-red-600 transition group cursor-pointer">
-            <div className="h-40 bg-gradient-to-br from-red-600/20 to-red-900/20"></div>
-            <div className="p-6">
-              <div className="text-red-600 text-xs font-bold mb-2">TADBIR</div>
-              <h3 className="text-xl font-bold text-white mb-3 group-hover:text-red-600 transition">Jamoa Kerak!</h3>
-              <p className="text-gray-400 text-sm mb-4">Men bilan qo'shilmoqchi bo'lgan yaxshi dasturchilar va dizaynerlar kerak. Katta loyihalar qilishni rejalashtirmoqchiman.</p>
-              <div className="flex justify-between items-center text-sm text-gray-500">
-                <span>2026/06/29</span>
-                <span className="text-red-600">Joylar ochiq!</span>
+        <div style={styles.gridLayout}>
+          {[
+            { title: 'Jamoa Kerak!', category: 'TADBIR', desc: 'Men bilan qo\'shilmoqchi bo\'lgan yaxshi dasturchilar kerak.' },
+            { title: 'Portfolio Yaratdim!', category: 'XABAR', desc: 'Yangi portfolio saytimni launch qildim.' },
+            { title: 'Frontend Boshlang\'ich', category: 'TUTORIAL', desc: 'HTML, CSS va JavaScript\'ni boshlang\'ichlar uchun.' },
+            { title: 'AI Prompting Tips', category: 'TIPS', desc: 'AI\'dan kerakli narsalarni qanday so\'rash kerak.' },
+            { title: 'Bootstrap O\'rnatish', category: 'AMALIYOT', desc: 'Bootstrap framework\'ini qanday o\'rnatish va ishlataish.' },
+            { title: 'React Darslar', category: 'HAYVON', desc: 'React\'ni o\'rganishni rejalashtirmoqchiman.' }
+          ].map((blog, i) => (
+            <div key={i} style={{ ...styles.card, border: '1px solid rgba(220, 38, 38, 0.3)', cursor: 'pointer', overflow: 'hidden', transition: 'all 0.3s' }} onMouseEnter={(e) => e.currentTarget.style.borderColor = '#dc2626'} onMouseLeave={(e) => e.currentTarget.style.borderColor = 'rgba(220, 38, 38, 0.3)'}>
+              <div style={{ height: '160px', background: 'linear-gradient(135deg, rgba(220, 38, 38, 0.2), rgba(127, 29, 29, 0.2))' }}></div>
+              <div style={{ padding: '1.5rem' }}>
+                <div style={{ color: '#dc2626', fontSize: '0.75rem', fontWeight: 'bold', marginBottom: '0.5rem' }}>{blog.category}</div>
+                <h3 style={{ fontSize: '1.25rem', fontWeight: 'bold', color: '#ffffff', marginBottom: '0.75rem' }}>{blog.title}</h3>
+                <p style={{ color: '#9ca3af', fontSize: '0.875rem', marginBottom: '1rem' }}>{blog.desc}</p>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.875rem', color: '#6b7280' }}>
+                  <span>2026/06/29</span>
+                  <span style={{ color: '#dc2626' }}>Keladi!</span>
+                </div>
               </div>
             </div>
-          </article>
-
-          <article className="bg-gray-950 border border-red-600/30 rounded-lg overflow-hidden hover:border-red-600 transition group cursor-pointer">
-            <div className="h-40 bg-gradient-to-br from-red-600/20 to-red-900/20"></div>
-            <div className="p-6">
-              <div className="text-red-600 text-xs font-bold mb-2">XABAR</div>
-              <h3 className="text-xl font-bold text-white mb-3 group-hover:text-red-600 transition">Portfolio Yaratdim!</h3>
-              <p className="text-gray-400 text-sm mb-4">Yangi portfolio saytimni launch qildim. Bu yerda barcha loyihalari va bilimlarimi ko'rsa olasiz.</p>
-              <div className="flex justify-between items-center text-sm text-gray-500">
-                <span>2026/06/29</span>
-                <span className="text-red-600">Ko'ring!</span>
-              </div>
-            </div>
-          </article>
-
-          <article className="bg-gray-950 border border-red-600/30 rounded-lg overflow-hidden hover:border-red-600 transition group cursor-pointer">
-            <div className="h-40 bg-gradient-to-br from-red-600/20 to-red-900/20"></div>
-            <div className="p-6">
-              <div className="text-red-600 text-xs font-bold mb-2">TUTORIAL</div>
-              <h3 className="text-xl font-bold text-white mb-3 group-hover:text-red-600 transition">Frontend Boshlang'ich</h3>
-              <p className="text-gray-400 text-sm mb-4">HTML, CSS va JavaScript'ni boshlang'ichlar uchun o'rgatadigan maqolalar yozmoqchiman.</p>
-              <div className="flex justify-between items-center text-sm text-gray-500">
-                <span>Tez kuni</span>
-                <span className="text-red-600">Keladi!</span>
-              </div>
-            </div>
-          </article>
-
-          <article className="bg-gray-950 border border-red-600/30 rounded-lg overflow-hidden hover:border-red-600 transition group cursor-pointer">
-            <div className="h-40 bg-gradient-to-br from-red-600/20 to-red-900/20"></div>
-            <div className="p-6">
-              <div className="text-red-600 text-xs font-bold mb-2">TIPS</div>
-              <h3 className="text-xl font-bold text-white mb-3 group-hover:text-red-600 transition">AI Prompting Tips</h3>
-              <p className="text-gray-400 text-sm mb-4">AI'dan kerakli narsalarni qanday so'rash kerak. Effective prompt yozishning sirlarini o'rgataman.</p>
-              <div className="flex justify-between items-center text-sm text-gray-500">
-                <span>2026/06/30</span>
-                <span className="text-red-600">5 min o'qish</span>
-              </div>
-            </div>
-          </article>
-
-          <article className="bg-gray-950 border border-red-600/30 rounded-lg overflow-hidden hover:border-red-600 transition group cursor-pointer">
-            <div className="h-40 bg-gradient-to-br from-red-600/20 to-red-900/20"></div>
-            <div className="p-6">
-              <div className="text-red-600 text-xs font-bold mb-2">AMALIYOT</div>
-              <h3 className="text-xl font-bold text-white mb-3 group-hover:text-red-600 transition">Bootstrap O'rnatish</h3>
-              <p className="text-gray-400 text-sm mb-4">Bootstrap framework'ini qanday o'rnatish va ishlataish kerak. Praktik misollar va code snippets.</p>
-              <div className="flex justify-between items-center text-sm text-gray-500">
-                <span>Tez kuni</span>
-                <span className="text-red-600">Keladi!</span>
-              </div>
-            </div>
-          </article>
-
-          <article className="bg-gray-950 border border-red-600/30 rounded-lg overflow-hidden hover:border-red-600 transition group cursor-pointer">
-            <div className="h-40 bg-gradient-to-br from-red-600/20 to-red-900/20"></div>
-            <div className="p-6">
-              <div className="text-red-600 text-xs font-bold mb-2">HAYVON</div>
-              <h3 className="text-xl font-bold text-white mb-3 group-hover:text-red-600 transition">React Darslar</h3>
-              <p className="text-gray-400 text-sm mb-4">React'ni o'rganishni rejalashtirmoqchiman. Components, hooks va state management haqida.</p>
-              <div className="flex justify-between items-center text-sm text-gray-500">
-                <span>Tez kuni</span>
-                <span className="text-red-600">Keladi!</span>
-              </div>
-            </div>
-          </article>
+          ))}
         </div>
       </div>
     </div>
   );
 
   const ContactPage = () => (
-    <div className="min-h-screen bg-black pt-24">
-      <div className="max-w-4xl mx-auto px-6 py-20">
-        <h1 className="text-5xl font-black text-white mb-4">Aloqasi</h1>
-        <div className="h-1 w-20 bg-red-600 mb-12"></div>
+    <div style={{ backgroundColor: '#000000', minHeight: '100vh', paddingTop: '6rem' }}>
+      <div style={styles.section}>
+        <h1 style={styles.heading}>Aloqasi</h1>
+        <div style={styles.redLine}></div>
 
-        <div className="grid md:grid-cols-2 gap-12">
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '3rem' }}>
           <div>
-            <p className="text-gray-400 text-lg mb-8">Men bilan bog'lanmoqchi bo'lsanggiz, pastgi qismda mening kontakt ma'lumotlari bor. Sizga 1 kun ichida javob qaytaraman!</p>
+            <p style={{ color: '#9ca3af', fontSize: '1.125rem', marginBottom: '2rem' }}>Men bilan bog'lanmoqchi bo'lsanggiz, pastgi qismda mening kontakt ma'lumotlari bor.</p>
 
-            <div className="space-y-6">
-              <div className="flex gap-4">
-                <Mail className="text-red-600 flex-shrink-0" size={24} />
-                <div>
-                  <p className="text-white font-bold">Email</p>
-                  <p className="text-gray-400">shahruhduschanov@gmail.com</p>
-                </div>
-              </div>
-
-              <div className="flex gap-4">
-                <Phone className="text-red-600 flex-shrink-0" size={24} />
-                <div>
-                  <p className="text-white font-bold">Telefon</p>
-                  <p className="text-gray-400">+998 99 913 89 99</p>
-                </div>
-              </div>
-
-              <div className="flex gap-4">
-                <MapPin className="text-red-600 flex-shrink-0" size={24} />
-                <div>
-                  <p className="text-white font-bold">Manzil</p>
-                  <p className="text-gray-400">Xonqa, Xorazm viloyati</p>
-                </div>
-              </div>
-
-              <div className="flex gap-4">
-                <Github className="text-red-600 flex-shrink-0" size={24} />
-                <div>
-                  <p className="text-white font-bold">Sosial Tarmoqlar</p>
-                  <div className="flex gap-4 text-red-600 mt-2">
-                    <a href="https://github.com/shaxa-desing" target="_blank" rel="noopener noreferrer" className="hover:text-red-400">GitHub</a>
-                    <a href="https://gitlab.com/shoxruxbek_899" target="_blank" rel="noopener noreferrer" className="hover:text-red-400">GitLab</a>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+              {[
+                { icon: Mail, label: 'Email', value: 'shahruhduschanov@gmail.com', href: 'mailto:shahruhduschanov@gmail.com' },
+                { icon: Phone, label: 'Telefon', value: '+998 99 913 89 99', href: 'tel:+998999138999' },
+                { icon: MapPin, label: 'Manzil', value: 'Xonqa, Xorazm viloyati' },
+                { icon: Github, label: 'GitHub', value: 'GitHub Profile', href: 'https://github.com/shaxa-desing' }
+              ].map((contact) => (
+                <div key={contact.label} style={{ display: 'flex', gap: '1rem' }}>
+                  <contact.icon style={{ color: '#dc2626', flexShrink: 0 }} size={24} />
+                  <div>
+                    <p style={{ color: '#ffffff', fontWeight: 'bold' }}>{contact.label}</p>
+                    {contact.href ? (
+                      <a href={contact.href} target="_blank" rel="noopener noreferrer" style={{ color: '#9ca3af', textDecoration: 'none' }}>
+                        {contact.value}
+                      </a>
+                    ) : (
+                      <p style={{ color: '#9ca3af' }}>{contact.value}</p>
+                    )}
                   </div>
                 </div>
-              </div>
+              ))}
             </div>
           </div>
 
-          {/* Contact Form */}
-          <div className="bg-gray-950 border-2 border-red-600 rounded-lg p-8">
-            <h3 className="text-2xl font-bold text-white mb-6">Xabar Yuborish</h3>
-            <form className="space-y-4">
+          <div style={{ ...styles.card, border: '2px solid #dc2626' }}>
+            <h3 style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#ffffff', marginBottom: '1.5rem' }}>Xabar Yuborish</h3>
+            <form style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
               <input
                 type="text"
                 placeholder="Ismingiz"
-                className="w-full bg-black border border-red-600/30 text-white px-4 py-3 rounded focus:border-red-600 outline-none transition"
+                style={{ backgroundColor: '#1a1a1a', border: '1px solid rgba(220, 38, 38, 0.3)', color: '#ffffff', padding: '0.75rem 1rem', borderRadius: '0.375rem', fontSize: '1rem', outline: 'none' }}
+                onFocus={(e) => e.target.style.borderColor = '#dc2626'}
+                onBlur={(e) => e.target.style.borderColor = 'rgba(220, 38, 38, 0.3)'}
               />
               <input
                 type="email"
                 placeholder="Email"
-                className="w-full bg-black border border-red-600/30 text-white px-4 py-3 rounded focus:border-red-600 outline-none transition"
+                style={{ backgroundColor: '#1a1a1a', border: '1px solid rgba(220, 38, 38, 0.3)', color: '#ffffff', padding: '0.75rem 1rem', borderRadius: '0.375rem', fontSize: '1rem', outline: 'none' }}
+                onFocus={(e) => e.target.style.borderColor = '#dc2626'}
+                onBlur={(e) => e.target.style.borderColor = 'rgba(220, 38, 38, 0.3)'}
               />
               <input
                 type="text"
                 placeholder="Mavzu"
-                className="w-full bg-black border border-red-600/30 text-white px-4 py-3 rounded focus:border-red-600 outline-none transition"
+                style={{ backgroundColor: '#1a1a1a', border: '1px solid rgba(220, 38, 38, 0.3)', color: '#ffffff', padding: '0.75rem 1rem', borderRadius: '0.375rem', fontSize: '1rem', outline: 'none' }}
+                onFocus={(e) => e.target.style.borderColor = '#dc2626'}
+                onBlur={(e) => e.target.style.borderColor = 'rgba(220, 38, 38, 0.3)'}
               />
               <textarea
                 placeholder="Xabaringiz..."
                 rows="5"
-                className="w-full bg-black border border-red-600/30 text-white px-4 py-3 rounded focus:border-red-600 outline-none transition resize-none"
-              ></textarea>
+                style={{ backgroundColor: '#1a1a1a', border: '1px solid rgba(220, 38, 38, 0.3)', color: '#ffffff', padding: '0.75rem 1rem', borderRadius: '0.375rem', fontSize: '1rem', outline: 'none', resize: 'none', fontFamily: 'inherit' }}
+                onFocus={(e) => e.target.style.borderColor = '#dc2626'}
+                onBlur={(e) => e.target.style.borderColor = 'rgba(220, 38, 38, 0.3)'}
+              />
               <button
                 type="submit"
-                className="w-full bg-red-600 hover:bg-red-700 text-white py-3 rounded font-bold transition"
+                style={{ backgroundColor: '#dc2626', color: '#ffffff', padding: '0.75rem 2rem', borderRadius: '0.375rem', fontWeight: 'bold', border: 'none', cursor: 'pointer', fontSize: '1rem', transition: 'background-color 0.3s' }}
+                onMouseEnter={(e) => e.target.style.backgroundColor = '#b91c1c'}
+                onMouseLeave={(e) => e.target.style.backgroundColor = '#dc2626'}
               >
                 Yuborish
               </button>
@@ -716,15 +664,15 @@ const Portfolio = () => {
   );
 
   const Footer = () => (
-    <footer className="bg-black border-t border-red-600/30 py-12 mt-20">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="grid md:grid-cols-4 gap-8 mb-12">
+    <footer style={styles.footer}>
+      <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '2rem', marginBottom: '3rem' }}>
           <div>
-            <h4 className="text-white font-bold mb-4">Sahifalar</h4>
-            <ul className="space-y-2 text-gray-500 text-sm">
+            <h4 style={{ color: '#ffffff', fontWeight: 'bold', marginBottom: '1rem' }}>Sahifalar</h4>
+            <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', listStyle: 'none', padding: 0 }}>
               {Object.entries(pages).slice(0, 4).map(([key, label]) => (
                 <li key={key}>
-                  <button onClick={() => setCurrentPage(key)} className="hover:text-red-600 bg-none border-none cursor-pointer text-inherit">
+                  <button onClick={() => setCurrentPage(key)} style={{ background: 'none', border: 'none', color: '#6b7280', cursor: 'pointer', fontSize: '0.875rem' }} onMouseEnter={(e) => e.target.style.color = '#dc2626'} onMouseLeave={(e) => e.target.style.color = '#6b7280'}>
                     {label}
                   </button>
                 </li>
@@ -732,45 +680,30 @@ const Portfolio = () => {
             </ul>
           </div>
           <div>
-            <h4 className="text-white font-bold mb-4">Loyihalar</h4>
-            <ul className="space-y-2 text-gray-500 text-sm">
-              <li><button onClick={() => setCurrentPage('projects')} className="hover:text-red-600 bg-none border-none cursor-pointer text-inherit">Barcha Loyihalar</button></li>
-              <li><button onClick={() => setCurrentPage('projects')} className="hover:text-red-600 bg-none border-none cursor-pointer text-inherit">Frontend</button></li>
-              <li><button onClick={() => setCurrentPage('projects')} className="hover:text-red-600 bg-none border-none cursor-pointer text-inherit">AI Projects</button></li>
+            <h4 style={{ color: '#ffffff', fontWeight: 'bold', marginBottom: '1rem' }}>Loyihalar</h4>
+            <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', listStyle: 'none', padding: 0 }}>
+              <li><button onClick={() => setCurrentPage('projects')} style={{ background: 'none', border: 'none', color: '#6b7280', cursor: 'pointer', fontSize: '0.875rem' }} onMouseEnter={(e) => e.target.style.color = '#dc2626'} onMouseLeave={(e) => e.target.style.color = '#6b7280'}>Barcha Loyihalar</button></li>
+              <li><button onClick={() => setCurrentPage('projects')} style={{ background: 'none', border: 'none', color: '#6b7280', cursor: 'pointer', fontSize: '0.875rem' }} onMouseEnter={(e) => e.target.style.color = '#dc2626'} onMouseLeave={(e) => e.target.style.color = '#6b7280'}>Frontend</button></li>
             </ul>
           </div>
           <div>
-            <h4 className="text-white font-bold mb-4">Resurslar</h4>
-            <ul className="space-y-2 text-gray-500 text-sm">
-              <li><button onClick={() => setCurrentPage('blog')} className="hover:text-red-600 bg-none border-none cursor-pointer text-inherit">Blog</button></li>
-              <li><button onClick={() => setCurrentPage('skills')} className="hover:text-red-600 bg-none border-none cursor-pointer text-inherit">Ko'nikmalar</button></li>
-              <li><button onClick={() => setCurrentPage('about')} className="hover:text-red-600 bg-none border-none cursor-pointer text-inherit">Men Haqimda</button></li>
-            </ul>
-          </div>
-          <div>
-            <h4 className="text-white font-bold mb-4">Bog'lanish</h4>
-            <ul className="space-y-2 text-gray-500 text-sm">
-              <li><a href="mailto:shahruhduschanov@gmail.com" className="hover:text-red-600">Email</a></li>
-              <li><a href="tel:+998999138999" className="hover:text-red-600">Telefon</a></li>
-              <li><a href="https://github.com/shaxa-desing" target="_blank" rel="noopener noreferrer" className="hover:text-red-600">GitHub</a></li>
+            <h4 style={{ color: '#ffffff', fontWeight: 'bold', marginBottom: '1rem' }}>Bog'lanish</h4>
+            <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', listStyle: 'none', padding: 0 }}>
+              <li><a href="mailto:shahruhduschanov@gmail.com" style={{ color: '#6b7280', textDecoration: 'none', fontSize: '0.875rem', cursor: 'pointer' }} onMouseEnter={(e) => e.target.style.color = '#dc2626'} onMouseLeave={(e) => e.target.style.color = '#6b7280'}>Email</a></li>
+              <li><a href="tel:+998999138999" style={{ color: '#6b7280', textDecoration: 'none', fontSize: '0.875rem', cursor: 'pointer' }} onMouseEnter={(e) => e.target.style.color = '#dc2626'} onMouseLeave={(e) => e.target.style.color = '#6b7280'}>Telefon</a></li>
+              <li><a href="https://github.com/shaxa-desing" target="_blank" rel="noopener noreferrer" style={{ color: '#6b7280', textDecoration: 'none', fontSize: '0.875rem', cursor: 'pointer' }} onMouseEnter={(e) => e.target.style.color = '#dc2626'} onMouseLeave={(e) => e.target.style.color = '#6b7280'}>GitHub</a></li>
             </ul>
           </div>
         </div>
 
-        <div className="border-t border-red-600/30 pt-8 flex justify-between items-center flex-col md:flex-row gap-4">
-          <p className="text-gray-500 text-sm">
+        <div style={{ borderTop: '1px solid rgba(220, 38, 38, 0.3)', paddingTop: '2rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '2rem' }}>
+          <p style={{ color: '#6b7280', fontSize: '0.875rem' }}>
             © 2024-2025 Shoxruxbek Duschanov. Barcha huquqlar himoyalangan.
           </p>
-          <div className="flex gap-6 text-gray-500 text-sm">
-            <button onClick={() => setCurrentPage('home')} className="hover:text-red-600 bg-none border-none cursor-pointer">Privacy Policy</button>
-            <button onClick={() => setCurrentPage('home')} className="hover:text-red-600 bg-none border-none cursor-pointer">Terms of Service</button>
-          </div>
         </div>
       </div>
     </footer>
   );
-
-  // ==================== RENDER LOGIC ====================
 
   const renderPage = () => {
     switch (currentPage) {
@@ -787,7 +720,7 @@ const Portfolio = () => {
   };
 
   return (
-    <div className="bg-black min-h-screen">
+    <div style={styles.container}>
       <Navigation />
       {renderPage()}
       <Footer />
