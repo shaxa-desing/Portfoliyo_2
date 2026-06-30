@@ -4,13 +4,13 @@ import { Menu, X, ArrowRight, ExternalLink, Github, Linkedin, Mail, Phone, MapPi
 const Portfolio = () => {
   const [currentPage, setCurrentPage] = useState('home');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-const [scrollY, setScrollY] = useState(0);
+  const [scrollY, setScrollY] = useState(0);
 
-useEffect(() => {
+  useEffect(() => {
   const handleScroll = () => setScrollY(window.scrollY);
   window.addEventListener('scroll', handleScroll);
   return () => window.removeEventListener('scroll', handleScroll);
-}, []);
+  }, []);
 
   const pages = {
     home: 'Bosh Sahifa',
