@@ -7,10 +7,12 @@ const Portfolio = () => {
   const [scrollY, setScrollY] = useState(0);
 
   useEffect(() => {
-  const handleScroll = () => setScrollY(window.scrollY);
+  const handleScroll = () => {
+    // Scroll listener
+  };
   window.addEventListener('scroll', handleScroll);
   return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+}, []);
 
   const pages = {
     home: 'Bosh Sahifa',
